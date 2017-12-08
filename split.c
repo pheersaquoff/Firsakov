@@ -12,8 +12,12 @@ void Split(char* string, char* delimiters, char*** tokensPtr, int* tokensCountPt
 	while (tokens[tokensCount] != NULL) {
 		printf("%d: %s\n", (tokensCount + 1), tokens[tokensCount]);
 		tokensCount++;
+		tokens[tokensCount] = (char*) calloc (maxLength, sizeof(char));
 		tokens[tokensCount] = strtok (NULL, delimiters);
-	}	
+	}
+	*tokensCountPtr = tokensCount;	
+	for (int i = 0; i < tokensCount; i++) 
+		free(tokens[tokensCount]);
 }
 
 int main () {
